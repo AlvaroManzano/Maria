@@ -7,12 +7,12 @@ const it: typeof es = {
   meta: {
     homeTitle: 'Psicologa online per italiani all’estero ed expat | Psicología con Acento',
     homeDescription:
-      'Terapia online in italiano, spagnolo e inglese per expat, migranti, famiglie e studenti internazionali. Prima chiamata gratuita di 30 minuti con la psicologa María Tani.',
+      'Terapia online in italiano, spagnolo e inglese per expat, migranti, famiglie e studenti internazionali. Prima chiamata gratuita di 30 minuti con la psicologa Maria Tani.',
     blogTitle: 'Blog su migrazione e salute mentale | Psicología con Acento',
     blogDescription:
-      'Articoli sul lutto migratorio, l’adattamento culturale e crescere figli tra culture diverse, a cura della psicologa María Tani.',
+      'Articoli sul lutto migratorio, l’adattamento culturale e crescere figli tra culture diverse, a cura della psicologa Maria Tani.',
     bookTitle: 'Prenota una seduta | Psicología con Acento',
-    bookDescription: 'Prenota la tua prima chiamata gratuita o una seduta di terapia online con María Tani.',
+    bookDescription: 'Prenota la tua prima chiamata gratuita o una seduta di terapia online con Maria Tani.',
     privacyTitle: 'Informativa sulla privacy | Psicología con Acento',
     legalTitle: 'Note legali | Psicología con Acento',
     notFoundTitle: 'Pagina non trovata | Psicología con Acento',
@@ -35,7 +35,7 @@ const it: typeof es = {
     cta: 'Prenota la prima chiamata gratuita',
     secondary: 'Vedi le tariffe',
     note: '30 minuti in videochiamata, senza impegno.',
-    portraitAlt: 'María Tani, psicologa, sorridente',
+    portraitAlt: 'Maria Tani, psicologa, sorridente',
     stamp: 'terapia online da qualsiasi paese',
   },
   who: {
@@ -52,7 +52,7 @@ const it: typeof es = {
       'Se ti riconosci, non stai sbagliando niente. Emigrare smuove molto più di quanto si veda da fuori, e merita uno spazio tutto suo.',
   },
   about: {
-    title: 'Sono María, e anch’io vivo con un accento',
+    title: 'Sono Maria, e anch’io vivo con un accento',
     paragraphs: [
       'Sono psicologa e anch’io migrante. Conosco il peso invisibile del ricominciare: il lutto che non ha nome, i cambiamenti di identità, la solitudine che sembra non avere senso perché «l’hai scelto tu».',
       'Lavoro con adulti, bambini, adolescenti e famiglie che vivono tra culture diverse. Il mio approccio è integrato: unisco strumenti di diversi orientamenti, basati sull’evidenza scientifica, e li adatto alla tua storia, perché la terapia deve parlare il tuo linguaggio emotivo, non solo la tua lingua madre.',

@@ -1,6 +1,6 @@
 # Psicología con Acento — web
 
-Web de María Tani (terapia online en español, italiano e inglés). Hecha con [Astro](https://astro.build): genera HTML estático, casi sin JavaScript, y se publica gratis en GitHub Pages.
+Web de Maria Tani (terapia online en español, italiano e inglés). Hecha con [Astro](https://astro.build): genera HTML estático, casi sin JavaScript, y se publica gratis en GitHub Pages.
 
 ## Uso diario
 

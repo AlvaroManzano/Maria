@@ -1,13 +1,13 @@
 /* ---------- Tokens ---------- */
 :root {
-  --paper: #faf8fc;
-  --wash: #eee9f7;
-  --ink: #2a2236;
-  --ink-soft: #564c66;
-  --lavender: #8b78c2;
-  --lavender-deep: #5b4691;
+  --paper: #fdf8f2;
+  --wash: #f6e9d9;
+  --ink: #3a2518;
+  --ink-soft: #6b5444;
+  --lavender: #e07a2f;
+  --lavender-deep: #9a4a14;
   --pollen: #e3a93b;
-  --rule: #ddd5ea;
+  --rule: #ead9c4;
   --whatsapp: #167a43;
 
   --serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;

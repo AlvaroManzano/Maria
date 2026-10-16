@@ -12,16 +12,16 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 for (const [lang, [a, b, sub]] of Object.entries(lines)) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#faf8fc"/>
-  <rect x="0" y="560" width="1200" height="70" fill="#2a2236"/>
-  <path d="M930 330 C 980 260, 1030 180, 1100 100" fill="none" stroke="#8b78c2" stroke-width="44" stroke-linecap="round"/>
-  <text x="80" y="230" font-family="Georgia, 'Times New Roman', serif" font-size="96" fill="#2a2236">${esc(a)}</text>
-  <text x="80" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-style="italic" fill="#2a2236">${esc(b)}</text>
-  <text x="80" y="430" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="34" fill="#564c66">${esc(sub)}</text>
-  <text x="80" y="606" font-family="Georgia, serif" font-size="30" fill="#faf8fc">Psicología con Acento · María Tani</text>
+  <rect width="1200" height="630" fill="#fdf8f2"/>
+  <rect x="0" y="560" width="1200" height="70" fill="#3a2518"/>
+  <path d="M930 330 C 980 260, 1030 180, 1100 100" fill="none" stroke="#e07a2f" stroke-width="44" stroke-linecap="round"/>
+  <text x="80" y="230" font-family="Georgia, 'Times New Roman', serif" font-size="96" fill="#3a2518">${esc(a)}</text>
+  <text x="80" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-style="italic" fill="#3a2518">${esc(b)}</text>
+  <text x="80" y="430" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="34" fill="#6b5444">${esc(sub)}</text>
+  <text x="80" y="606" font-family="Georgia, serif" font-size="30" fill="#fdf8f2">Psicología con Acento · Maria Tani</text>
 </svg>`;
   await sharp(Buffer.from(svg)).png().toFile(`public/og-${lang}.png`);
 }
 
-await sharp('public/favicon.svg', { density: 600 }).resize(180, 180).flatten({ background: '#faf8fc' }).png().toFile('public/apple-touch-icon.png');
+await sharp('public/favicon.svg', { density: 600 }).resize(180, 180).flatten({ background: '#fdf8f2' }).png().toFile('public/apple-touch-icon.png');
 console.log('ok');

@@ -7,12 +7,12 @@ const en: typeof es = {
   meta: {
     homeTitle: 'Online therapist for expats and people living abroad | Psicología con Acento',
     homeDescription:
-      'Online therapy in English, Spanish and Italian for expats, migrants, families and international students. Free 30-minute first call with psychologist María Tani.',
+      'Online therapy in English, Spanish and Italian for expats, migrants, families and international students. Free 30-minute first call with psychologist Maria Tani.',
     blogTitle: 'Blog on migration and mental health | Psicología con Acento',
     blogDescription:
-      'Articles on migratory grief, cultural adjustment and raising children between cultures, by psychologist María Tani.',
+      'Articles on migratory grief, cultural adjustment and raising children between cultures, by psychologist Maria Tani.',
     bookTitle: 'Book a session | Psicología con Acento',
-    bookDescription: 'Book your free first call or an online therapy session with María Tani.',
+    bookDescription: 'Book your free first call or an online therapy session with Maria Tani.',
     privacyTitle: 'Privacy policy | Psicología con Acento',
     legalTitle: 'Legal notice | Psicología con Acento',
     notFoundTitle: 'Page not found | Psicología con Acento',
@@ -35,7 +35,7 @@ const en: typeof es = {
     cta: 'Book your free first call',
     secondary: 'See fees',
     note: '30 minutes by video call, no commitment.',
-    portraitAlt: 'María Tani, psychologist, smiling',
+    portraitAlt: 'Maria Tani, psychologist, smiling',
     stamp: 'online therapy from any country',
   },
   who: {
@@ -52,7 +52,7 @@ const en: typeof es = {
       'If you recognise yourself here, you’re not doing anything wrong. Moving countries stirs up far more than people see from the outside, and it deserves a space of its own.',
   },
   about: {
-    title: 'I’m María, and I live with an accent too',
+    title: 'I’m Maria, and I live with an accent too',
     paragraphs: [
       'I’m a psychologist and a migrant myself. I know the invisible weight of starting over: the grief with no name, the shifts in identity, the loneliness that seems not to make sense because “you chose this”.',
       'I work with adults, children, teenagers and families living between cultures. My approach is integrative: I combine evidence-based tools from different schools of therapy and adapt them to your story, because therapy should speak your emotional language, not just your mother tongue.',

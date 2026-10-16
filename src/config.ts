@@ -1,7 +1,7 @@
 // Datos de contacto y servicios externos. Todo lo marcado con TODO hay que completarlo antes de publicar.
 export const site = {
   name: 'Psicología con Acento',
-  person: 'María Tani',
+  person: 'Maria Tani',
   whatsapp: 'https://wa.me/message/3MRLXQE6YLBIJ1',
   instagram: 'https://www.instagram.com/psicologia.conacento/',
   instagramHandle: '@psicologia.conacento',

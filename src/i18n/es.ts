@@ -5,12 +5,12 @@ export default {
   meta: {
     homeTitle: 'Psicóloga online para personas que viven en el extranjero | Psicología con Acento',
     homeDescription:
-      'Terapia online en español, italiano e inglés para expatriados, migrantes, familias y estudiantes internacionales. Primera llamada gratuita de 30 minutos con María Tani.',
+      'Terapia online en español, italiano e inglés para expatriados, migrantes, familias y estudiantes internacionales. Primera llamada gratuita de 30 minutos con Maria Tani.',
     blogTitle: 'Blog sobre migración y salud mental | Psicología con Acento',
     blogDescription:
-      'Artículos sobre duelo migratorio, adaptación cultural y crianza entre culturas, escritos por la psicóloga María Tani.',
+      'Artículos sobre duelo migratorio, adaptación cultural y crianza entre culturas, escritos por la psicóloga Maria Tani.',
     bookTitle: 'Reservar una sesión | Psicología con Acento',
-    bookDescription: 'Reserva tu primera llamada gratuita o una sesión de terapia online con María Tani.',
+    bookDescription: 'Reserva tu primera llamada gratuita o una sesión de terapia online con Maria Tani.',
     privacyTitle: 'Política de privacidad | Psicología con Acento',
     legalTitle: 'Aviso legal | Psicología con Acento',
     notFoundTitle: 'Página no encontrada | Psicología con Acento',
@@ -33,7 +33,7 @@ export default {
     cta: 'Pide tu primera llamada gratuita',
     secondary: 'Ver tarifas',
     note: '30 minutos por videollamada, sin compromiso.',
-    portraitAlt: 'María Tani, psicóloga, sonriendo',
+    portraitAlt: 'Maria Tani, psicóloga, sonriendo',
     stamp: 'terapia online desde cualquier país',
   },
   who: {
@@ -50,7 +50,7 @@ export default {
       'Si te reconoces, no estás haciendo nada mal. Migrar mueve mucho más de lo que se ve desde fuera, y merece un espacio propio.',
   },
   about: {
-    title: 'Soy María, y yo también vivo con acento',
+    title: 'Soy Maria, y yo también vivo con acento',
     paragraphs: [
       'Soy psicóloga y migrante. Conozco el peso invisible de empezar de nuevo: el duelo que no tiene nombre, los cambios de identidad, la soledad que parece no tener sentido porque «tú lo elegiste».',
       'Trabajo con adultos, niños, adolescentes y familias que viven entre culturas. Mi enfoque es integrador: combino herramientas de distintas corrientes con evidencia científica y las adapto a tu historia, porque la terapia tiene que hablar tu idioma emocional, no solo tu lengua materna.',
