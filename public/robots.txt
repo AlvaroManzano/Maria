@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://psicologiaconacento.com/sitemap-index.xml
+Sitemap: https://alvaromanzano.github.io/Maria/sitemap-index.xml
