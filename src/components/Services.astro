@@ -1,0 +1,27 @@
+---
+import { useTranslations, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+---
+<section id="services" class="section services" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="services-title">{t.services.title}</h2>
+      <p>{t.services.intro}</p>
+    </div>
+    <ul class="services__list">
+      {t.services.items.map((s) => (
+        <li><h3>{s.title}</h3><p>{s.text}</p></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .services { padding-top: 0; }
+  .services__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 5vw, 5rem); }
+  .services__list li { padding: 1.75rem 0 2rem; border-top: 1px solid var(--rule); }
+  .services__list h3 { font-size: var(--step-2); font-weight: 400; }
+  .services__list p { margin-top: 0.6rem; color: var(--ink-soft); max-width: 32rem; }
+  @media (max-width: 48rem) { .services__list { grid-template-columns: 1fr; } }
+</style>

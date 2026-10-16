@@ -1,0 +1,22 @@
+---
+import TextPage from '../../components/TextPage.astro';
+import { routes, useTranslations } from '../../i18n';
+import { site } from '../../config';
+const t = useTranslations('it');
+---
+<TextPage lang="it" title={t.meta.privacyTitle} heading="Informativa sulla privacy" alternates={routes.privacy}>
+  <p><strong>Titolare del trattamento:</strong> {site.person} ([CODICE FISCALE/NIF DA INSERIRE]), {site.name}. Contatto: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  <h2>Quali dati raccolgo e perché</h2>
+  <p>Quando mi scrivi tramite il modulo, via email o su WhatsApp, tratto il tuo nome, la tua email o il tuo telefono e ciò che mi racconti nel messaggio, al solo scopo di risponderti e, se lo desideri, organizzare le sedute.</p>
+  <p>Se iniziamo un percorso terapeutico, i dati sulla salute che condividi sono trattati con la massima riservatezza e nel rispetto del segreto professionale, per fornirti assistenza psicologica.</p>
+  <h2>Base giuridica</h2>
+  <p>Il tuo consenso quando mi invii un messaggio e, se del caso, il contratto di prestazione di servizi. I dati sulla salute sono trattati per finalità di assistenza sanitaria (art. 9.2.h GDPR).</p>
+  <h2>Per quanto tempo li conservo</h2>
+  <p>Le richieste che non portano a un percorso terapeutico vengono cancellate entro un anno al massimo. La cartella clinica è conservata per il tempo previsto dalla normativa sanitaria applicabile.</p>
+  <h2>Con chi vengono condivisi</h2>
+  <p>Non cedo i tuoi dati a terzi. Mi avvalgo di fornitori che agiscono come responsabili del trattamento: il servizio di moduli (Formspree), l’email, WhatsApp e la piattaforma di videochiamata. Alcuni possono trovarsi fuori dallo Spazio Economico Europeo, con garanzie adeguate.</p>
+  <h2>I tuoi diritti</h2>
+  <p>Puoi accedere, rettificare, cancellare, opporti, limitare il trattamento o chiedere la portabilità dei tuoi dati scrivendo a <a href={`mailto:${site.email}`}>{site.email}</a>. Puoi anche presentare reclamo all’autorità di controllo competente (in Spagna, aepd.es; in Italia, garanteprivacy.it).</p>
+  <h2>Cookie</h2>
+  <p>Questo sito non utilizza cookie di tracciamento né di analisi. Se in futuro verrà aggiunto un calendario di prenotazione esterno, si caricherà solo quando premi il pulsante per aprirlo.</p>
+</TextPage>

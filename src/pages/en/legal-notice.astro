@@ -1,0 +1,23 @@
+---
+import TextPage from '../../components/TextPage.astro';
+import { routes, useTranslations } from '../../i18n';
+import { site } from '../../config';
+const t = useTranslations('en');
+---
+<TextPage lang="en" title={t.meta.legalTitle} heading="Legal notice" alternates={routes.legal}>
+  <p>In compliance with Spanish Law 34/2002 on Information Society Services (LSSI), the details of the owner of this website are:</p>
+  <ul>
+    <li><strong>Owner:</strong> {site.person}</li>
+    <li><strong>Tax ID (NIF):</strong> [PENDING]</li>
+    <li><strong>Address:</strong> [PENDING]</li>
+    <li><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+    <li><strong>Qualification:</strong> MSc in Clinical Psychology</li>
+    <li><strong>Professional body and registration no.:</strong> {site.colegiada || '[PENDING]'}</li>
+  </ul>
+  <h2>Use of this website</h2>
+  <p>The content of this website, including blog articles, is for information only and does not replace an individual psychological assessment or treatment.</p>
+  <h2>Intellectual property</h2>
+  <p>The texts, images and design of this website belong to its owner and may not be reproduced without express permission.</p>
+  <h2>External links</h2>
+  <p>This website may link to third-party services (WhatsApp, Instagram, booking calendar). The owner is not responsible for their content or policies.</p>
+</TextPage>

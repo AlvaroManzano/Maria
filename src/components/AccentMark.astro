@@ -1,0 +1,27 @@
+---
+// El acento agudo (´) de la marca: un trazo de pincel inclinado.
+interface Props { class?: string; animate?: boolean }
+const { class: className, animate = false } = Astro.props;
+---
+<svg class:list={['accent-mark', className, { 'accent-mark--draw': animate }]} viewBox="0 0 60 60" aria-hidden="true" focusable="false">
+  <path d="M14 50 C 24 38, 34 24, 48 9" pathLength="1" />
+</svg>
+
+<style>
+  .accent-mark { overflow: visible; }
+  .accent-mark path {
+    fill: none;
+    stroke: var(--lavender);
+    stroke-width: 9;
+    stroke-linecap: round;
+  }
+  .accent-mark--draw path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-accent 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.35s forwards;
+  }
+  @keyframes draw-accent { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .accent-mark--draw path { stroke-dashoffset: 0; }
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import BookingEmbed from './BookingEmbed.astro';
+import { routes, useTranslations, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<Base lang={lang} title={t.meta.bookTitle} description={t.meta.bookDescription} alternates={routes.book}>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h1 class="page-title">{t.book.title}</h1>
+        <p>{t.book.intro}</p>
+      </div>
+      <BookingEmbed lang={lang} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-title { font-size: var(--step-4); line-height: 1; }
+</style>

@@ -1,0 +1,58 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { href, blogPostPath, useTranslations, withBase, type Lang } from '../i18n';
+import { postAlternates, postSlug, readingMinutes, formatDate, type Post } from '../lib/blog';
+import { site } from '../config';
+interface Props { post: Post; lang: Lang }
+const { post, lang } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(post);
+const alternates = await postAlternates(post);
+const url = new URL(withBase(blogPostPath(lang, postSlug(post))), Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    inLanguage: lang,
+    mainEntityOfPage: url,
+    image: new URL(withBase(`/og-${lang}.png`), Astro.site).href,
+    author: { '@type': 'Person', name: site.person, url: new URL(withBase('/'), Astro.site).href },
+    publisher: { '@type': 'Organization', name: site.name },
+  },
+];
+---
+<Base lang={lang} title={`${post.data.title} | ${site.name}`} description={post.data.description} alternates={alternates} ogType="article" jsonLd={jsonLd}>
+  <article class="section post">
+    <div class="wrap">
+      <a class="post__back" href={href('blog', lang)}>{t.blog.back}</a>
+      <header class="post__header">
+        <h1>{post.data.title}</h1>
+        <p class="post__meta">
+          {site.person}, <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, lang)}</time>. {readingMinutes(post)} {t.blog.minRead}.
+        </p>
+      </header>
+      <div class="prose">
+        <Content />
+      </div>
+      <aside class="post__cta">
+        <h2>{t.blog.ctaTitle}</h2>
+        <p>{t.blog.ctaText}</p>
+        <a class="btn btn--primary" href={site.whatsapp} target="_blank" rel="noopener">{t.hero.cta}</a>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post__back { font-size: var(--step--1); font-weight: 600; }
+  .post__header { max-width: 46rem; margin: 1.5rem 0 3rem; }
+  .post__header h1 { font-size: var(--step-3); line-height: 1.08; }
+  .post__meta { margin-top: 1rem; color: var(--ink-soft); font-size: var(--step--1); }
+  .post__cta { max-width: 40rem; margin-top: 4rem; padding: 2rem; border-radius: var(--radius); background: var(--wash); }
+  .post__cta h2 { font-size: var(--step-2); }
+  .post__cta p { margin: 0.5rem 0 1.5rem; color: var(--ink-soft); }
+</style>

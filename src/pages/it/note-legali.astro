@@ -1,0 +1,23 @@
+---
+import TextPage from '../../components/TextPage.astro';
+import { routes, useTranslations } from '../../i18n';
+import { site } from '../../config';
+const t = useTranslations('it');
+---
+<TextPage lang="it" title={t.meta.legalTitle} heading="Note legali" alternates={routes.legal}>
+  <p>In conformità alla legge spagnola 34/2002 sui servizi della società dell’informazione (LSSI), si riportano i dati del titolare di questo sito:</p>
+  <ul>
+    <li><strong>Titolare:</strong> {site.person}</li>
+    <li><strong>Codice fiscale / NIF:</strong> [DA INSERIRE]</li>
+    <li><strong>Indirizzo:</strong> [DA INSERIRE]</li>
+    <li><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+    <li><strong>Titolo:</strong> Master in Psicologia Clinica</li>
+    <li><strong>Ordine professionale e n. di iscrizione:</strong> {site.colegiada || '[DA INSERIRE]'}</li>
+  </ul>
+  <h2>Uso del sito</h2>
+  <p>I contenuti di questo sito, compresi gli articoli del blog, hanno scopo informativo e non sostituiscono una valutazione o un trattamento psicologico individuale.</p>
+  <h2>Proprietà intellettuale</h2>
+  <p>I testi, le immagini e il design di questo sito appartengono al titolare e non possono essere riprodotti senza autorizzazione espressa.</p>
+  <h2>Link esterni</h2>
+  <p>Questo sito può contenere link a servizi di terzi (WhatsApp, Instagram, calendario delle prenotazioni). Il titolare non è responsabile dei loro contenuti né delle loro politiche.</p>
+</TextPage>

@@ -1,0 +1,12 @@
+---
+import TextPage from '../components/TextPage.astro';
+import { href, useTranslations } from '../i18n';
+const t = useTranslations('es');
+const en = useTranslations('en');
+const it = useTranslations('it');
+---
+<TextPage lang="es" title={t.meta.notFoundTitle} heading={t.notFound.title} alternates={{}} noindex>
+  <p>{t.notFound.text}</p>
+  <p><a class="btn btn--primary" href={href('home', 'es')}>{t.notFound.back}</a></p>
+  <p lang="en"><a href={href('home', 'en')}>{en.notFound.back}</a>. <span lang="it"><a href={href('home', 'it')}>{it.notFound.back}</a>.</span></p>
+</TextPage>

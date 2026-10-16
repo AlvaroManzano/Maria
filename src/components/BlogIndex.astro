@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from './PostList.astro';
+import { routes, useTranslations, type Lang } from '../i18n';
+import { getPosts } from '../lib/blog';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const posts = await getPosts(lang);
+---
+<Base lang={lang} title={t.meta.blogTitle} description={t.meta.blogDescription} alternates={routes.blog}>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h1 class="page-title">{t.blog.title}</h1>
+        <p>{t.blog.intro}</p>
+      </div>
+      <PostList lang={lang} posts={posts} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-title { font-size: var(--step-4); line-height: 1; }
+</style>

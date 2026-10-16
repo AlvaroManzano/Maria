@@ -1,0 +1,80 @@
+---
+import { Picture } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
+import AccentMark from './AccentMark.astro';
+import { langs, href, useTranslations, type Lang } from '../i18n';
+import { site } from '../config';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+// La última palabra del titular («acento», «accento», «accent») lleva el acento de la marca encima.
+const line = t.hero.line;
+const cut = line.lastIndexOf(' ');
+const [head, tail] = [line.slice(0, cut), line.slice(cut + 1)];
+// Posición del acento sobre la vocal tónica: acÉnto, accÈnto, Áccent.
+const markLeft = { es: '0.92em', it: '1.32em', en: '0.08em' }[lang];
+const others = langs.filter((l) => l !== lang).map((l) => ({ lang: l, line: useTranslations(l).hero.line }));
+---
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <h1 class="hero__title">
+        {head} <span class="hero__accented" style={`--mark-left: ${markLeft}`}>{tail}<AccentMark class="hero__mark" animate /></span>
+      </h1>
+      <p class="hero__others">
+        {others.map((o) => <span lang={o.lang}>{o.line}</span>)}
+      </p>
+      <p class="hero__lead">{t.hero.lead}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={site.whatsapp} target="_blank" rel="noopener">{t.hero.cta}</a>
+        <a class="btn btn--ghost" href={href('home', lang, '#fees')}>{t.hero.secondary}</a>
+      </div>
+      <p class="hero__note">{t.hero.note}</p>
+    </div>
+
+    <figure class="hero__figure">
+      <Picture
+        src={portrait}
+        alt={t.hero.portraitAlt}
+        formats={['avif', 'webp']}
+        widths={[280, 400]}
+        sizes="(min-width: 60rem) 20rem, 70vw"
+        loading="eager"
+        fetchpriority="high"
+        class="hero__photo"
+      />
+      <svg class="hero__stamp" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="stamp-circle" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" /></defs>
+        <circle cx="60" cy="60" r="57" class="hero__stamp-ring" />
+        <text><textPath href="#stamp-circle" textLength="270">{t.hero.stamp}</textPath></text>
+        <path d="M50 74 C 54 66, 60 57, 68 47" class="hero__stamp-mark" />
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: clamp(2.5rem, 1.5rem + 5vw, 6rem) var(--section); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(3rem, 5vw, 5rem); align-items: center; }
+  .hero__title { font-size: var(--step-4); line-height: 1.16; letter-spacing: -0.03em; font-weight: 380; }
+  .hero__accented { position: relative; display: inline-block; font-style: italic; }
+  .hero__accented :global(.hero__mark) { position: absolute; width: 0.4em; left: var(--mark-left); top: -0.16em; }
+  .hero__accented :global(.hero__mark path) { stroke-width: 11; }
+  .hero__others { margin-top: 1.25rem; display: grid; gap: 0.1rem; font-family: var(--serif); font-style: italic; font-size: var(--step-1); color: var(--ink-soft); }
+  .hero__lead { margin-top: 1.75rem; max-width: 34rem; font-size: var(--step-1); line-height: 1.5; }
+  .hero__actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .hero__note { margin-top: 0.9rem; font-size: var(--step--1); color: var(--ink-soft); }
+
+  .hero__figure { position: relative; margin: 0; justify-self: center; width: min(20rem, 72vw); }
+  .hero__figure :global(.hero__photo) { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px var(--radius) var(--radius); background: var(--wash); }
+  .hero__stamp { position: absolute; width: 7.5rem; left: -2.5rem; bottom: -1.5rem; transform: rotate(-12deg); }
+  .hero__stamp-ring { fill: var(--paper); stroke: var(--lavender-deep); stroke-width: 1.5; stroke-dasharray: 3 3; }
+  .hero__stamp text { font: 600 11px var(--sans); fill: var(--lavender-deep); letter-spacing: 0.06em; }
+  .hero__stamp-mark { fill: none; stroke: var(--lavender); stroke-width: 7; stroke-linecap: round; }
+
+  @media (max-width: 60rem) {
+    .hero__grid { grid-template-columns: minmax(0, 1fr); }
+    .hero__figure { width: min(16rem, 70vw); }
+    .hero__stamp { width: 6rem; left: -1.75rem; }
+  }
+</style>

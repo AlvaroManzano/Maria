@@ -1,0 +1,77 @@
+---
+import Logo from './Logo.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { href, useTranslations, type Lang } from '../i18n';
+interface Props { lang: Lang; alternates: Partial<Record<Lang, string>> }
+const { lang, alternates } = Astro.props;
+const t = useTranslations(lang);
+const links = [
+  { label: t.nav.about, url: href('home', lang, '#about') },
+  { label: t.nav.services, url: href('home', lang, '#services') },
+  { label: t.nav.fees, url: href('home', lang, '#fees') },
+  { label: t.nav.blog, url: href('blog', lang) },
+  { label: t.nav.contact, url: href('home', lang, '#contact') },
+];
+---
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <Logo href={href('home', lang)} />
+    <nav class="site-nav" aria-label="Principal">
+      <ul>{links.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
+    </nav>
+    <div class="site-header__end">
+      <LangSwitcher lang={lang} alternates={alternates} />
+      <a class="btn btn--primary site-header__cta" href={href('book', lang)}>{t.nav.book}</a>
+      <button class="menu-btn" type="button" popovertarget="mobile-nav" aria-label={t.nav.menu}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h11" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" class="mobile-nav" popover>
+    <div class="mobile-nav__top">
+      <LangSwitcher lang={lang} alternates={alternates} />
+      <button class="menu-btn" type="button" popovertarget="mobile-nav" popovertargetaction="hide" aria-label={t.nav.close}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <ul>{links.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
+    <a class="btn btn--primary" href={href('book', lang)}>{t.nav.book}</a>
+  </div>
+</header>
+
+<script>
+  // Cierra el menú móvil al pulsar un enlace interno (#ancla).
+  const nav = document.getElementById('mobile-nav');
+  nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => nav.hidePopover?.()));
+</script>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 4.25rem; }
+  .site-nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+  .site-nav a { color: var(--ink); text-decoration: none; font-size: var(--step--1); font-weight: 500; }
+  .site-nav a:hover { color: var(--lavender-deep); }
+  .site-header__end { display: flex; align-items: center; gap: 0.75rem; }
+  .site-header__cta { min-height: 2.5rem; padding: 0.5rem 1.1rem; font-size: var(--step--1); }
+  .menu-btn { display: none; width: 2.75rem; height: 2.75rem; border: 0; background: none; color: var(--ink); cursor: pointer; padding: 0.5rem; }
+  .menu-btn svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+
+  .mobile-nav { margin: 0; inset: 0 0 auto auto; width: min(22rem, 100%); height: 100dvh; max-height: none; border: 0; padding: 1rem var(--gutter) 2rem; background: var(--paper); box-shadow: -1px 0 0 var(--rule); }
+  .mobile-nav::backdrop { background: rgb(42 34 54 / 0.35); }
+  .mobile-nav__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .mobile-nav__top .menu-btn { display: block; }
+  .mobile-nav ul { list-style: none; margin: 0 0 2rem; padding: 0; }
+  .mobile-nav li a { display: block; padding: 0.85rem 0; border-bottom: 1px solid var(--rule); color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: var(--step-2); }
+  .mobile-nav .btn { width: 100%; }
+
+  @media (max-width: 60rem) {
+    .site-nav, .site-header__end > :global(.langs), .site-header__cta { display: none; }
+    .menu-btn { display: block; }
+  }
+</style>

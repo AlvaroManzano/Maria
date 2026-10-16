@@ -1,0 +1,43 @@
+---
+// Fachada ligera: el calendario externo (Cal.com, Google Calendar…) solo se carga cuando la persona pulsa el botón,
+// así no penaliza la velocidad de la página. Sin `site.bookingUrl`, se ofrece WhatsApp.
+import Icon from './Icon.astro';
+import { useTranslations, type Lang } from '../i18n';
+import { site } from '../config';
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+---
+{site.bookingUrl ? (
+  <div class="booking" data-src={site.bookingUrl} data-title={t.book.iframeTitle} data-loading={t.book.loading}>
+    <button class="btn btn--primary booking__open" type="button">{t.book.open}</button>
+    <noscript><a class="btn btn--primary" href={site.bookingUrl}>{t.book.open}</a></noscript>
+  </div>
+) : (
+  <div class="booking booking--fallback">
+    <h2>{t.book.fallbackTitle}</h2>
+    <p>{t.book.fallbackText}</p>
+    <a class="btn btn--whatsapp" href={site.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />{t.contact.whatsapp}</a>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('.booking[data-src]').forEach((box) => {
+    box.querySelector('.booking__open')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = box.dataset.src!;
+      iframe.title = box.dataset.title ?? '';
+      iframe.loading = 'eager';
+      iframe.className = 'booking__frame';
+      box.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>
+
+<style>
+  .booking { margin-top: 2rem; }
+  .booking :global(.booking__frame) { width: 100%; height: min(80vh, 46rem); border: 1px solid var(--rule); border-radius: var(--radius); background: #fff; }
+  .booking--fallback { max-width: 36rem; padding: 2rem; border-radius: var(--radius); background: var(--wash); }
+  .booking--fallback h2 { font-size: var(--step-2); }
+  .booking--fallback p { margin: 0.6rem 0 1.5rem; color: var(--ink-soft); }
+</style>

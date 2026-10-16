@@ -1,0 +1,102 @@
+/* ---------- Tokens ---------- */
+:root {
+  --paper: #faf8fc;
+  --wash: #eee9f7;
+  --ink: #2a2236;
+  --ink-soft: #564c66;
+  --lavender: #8b78c2;
+  --lavender-deep: #5b4691;
+  --pollen: #e3a93b;
+  --rule: #ddd5ea;
+  --whatsapp: #167a43;
+
+  --serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --step--1: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-0: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --step-3: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --step-4: clamp(2.75rem, 1.6rem + 5vw, 5.5rem);
+
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --wrap: 72rem;
+  --section: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --radius: 0.75rem;
+  color-scheme: light;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.1; margin: 0; letter-spacing: -0.015em; text-wrap: balance; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); font-weight: 500; letter-spacing: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--lavender-deep); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--lavender-deep); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--wash); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Layout helpers ---------- */
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section); }
+.section--wash { background: var(--wash); }
+.section-head { max-width: 40rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.section-head p { margin-top: 1rem; color: var(--ink-soft); font-size: var(--step-1); line-height: 1.45; }
+.measure { max-width: 38rem; }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--ink); color: var(--paper); padding: 0.75rem 1rem; border-radius: var(--radius); }
+.skip-link:focus { top: 1rem; color: var(--paper); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-height: 3rem; padding: 0.8rem 1.5rem;
+  border-radius: 999px; border: 1.5px solid var(--ink);
+  font: 600 var(--step-0)/1.2 var(--sans); text-decoration: none; cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--primary:hover { background: var(--lavender-deep); border-color: var(--lavender-deep); color: #fff; }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn--whatsapp { background: var(--whatsapp); border-color: var(--whatsapp); color: #fff; }
+.btn--whatsapp:hover { background: #0f6236; border-color: #0f6236; color: #fff; }
+.btn svg { width: 1.25rem; height: 1.25rem; flex: none; }
+.link-quiet { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--lavender); text-decoration-thickness: 2px; }
+
+/* ---------- Prose (blog + legal) ---------- */
+.prose { max-width: 40rem; font-size: var(--step-0); }
+.prose > * + * { margin-top: 1.25em; }
+.prose h2 { font-size: var(--step-2); margin-top: 2.2em; }
+.prose h3 { margin-top: 1.8em; }
+.prose ul, .prose ol { padding-left: 1.25em; }
+.prose li + li { margin-top: 0.5em; }
+.prose li::marker { color: var(--lavender); }
+.prose blockquote {
+  margin: 2em 0; padding: 0 0 0 1.25rem; border-left: 3px solid var(--lavender);
+  font-family: var(--serif); font-style: italic; font-size: var(--step-2); line-height: 1.3; color: var(--ink);
+}
+.prose strong { font-weight: 650; }

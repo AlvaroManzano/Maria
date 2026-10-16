@@ -1,0 +1,24 @@
+---
+import { langs, routes, useTranslations, withBase, type Lang } from '../i18n';
+interface Props { lang: Lang; alternates: Partial<Record<Lang, string>> }
+const { lang, alternates } = Astro.props;
+const t = useTranslations(lang);
+---
+<nav class="langs" aria-label={t.nav.langLabel}>
+  {langs.map((l) => (
+    <a
+      href={withBase(alternates[l] ?? routes.home[l])}
+      hreflang={l}
+      lang={l}
+      aria-current={l === lang ? 'true' : undefined}
+      title={useTranslations(l).langName}
+    >{l.toUpperCase()}</a>
+  ))}
+</nav>
+
+<style>
+  .langs { display: flex; gap: 0.15rem; font-size: var(--step--1); font-weight: 600; }
+  .langs a { padding: 0.4rem 0.45rem; border-radius: 0.4rem; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.04em; }
+  .langs a:hover { color: var(--ink); background: var(--wash); }
+  .langs a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--lavender); text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
+</style>

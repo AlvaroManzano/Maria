@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations, type Lang } from '../i18n';
+import { site } from '../config';
+interface Props { lang: Lang }
+const t = useTranslations(Astro.props.lang);
+---
+<a class="wa-fab" href={site.whatsapp} target="_blank" rel="noopener" aria-label={t.contact.whatsapp}>
+  <Icon name="whatsapp" />
+</a>
+
+<style>
+  .wa-fab {
+    position: fixed; right: 1rem; bottom: 1rem; z-index: 30;
+    display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%;
+    background: var(--whatsapp); color: #fff; box-shadow: 0 6px 20px rgb(22 122 67 / 0.35);
+    transition: transform 0.2s;
+  }
+  .wa-fab:hover { transform: translateY(-2px); color: #fff; }
+  .wa-fab :global(svg) { width: 1.75rem; height: 1.75rem; }
+  @media (min-width: 48rem) { .wa-fab { right: 1.5rem; bottom: 1.5rem; } }
+</style>

@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Who from './Who.astro';
+import About from './About.astro';
+import Services from './Services.astro';
+import Steps from './Steps.astro';
+import Fees from './Fees.astro';
+import Faq from './Faq.astro';
+import Contact from './Contact.astro';
+import PostList from './PostList.astro';
+import portrait from '../assets/portrait.jpg';
+import { href, routes, useTranslations, withBase, type Lang } from '../i18n';
+import { getPosts } from '../lib/blog';
+import { site, prices } from '../config';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const posts = (await getPosts(lang)).slice(0, 3);
+const url = new URL(withBase(routes.home[lang]), Astro.site).href;
+const imageUrl = new URL(portrait.src, Astro.site).href;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${new URL(withBase('/'), Astro.site).href}#practice`,
+    name: site.name,
+    url,
+    image: imageUrl,
+    description: t.meta.homeDescription,
+    inLanguage: lang,
+    availableLanguage: ['es', 'it', 'en'],
+    priceRange: `€0–€${prices.deepDive}`,
+    email: site.email,
+    sameAs: [site.instagram],
+    founder: {
+      '@type': 'Person',
+      name: site.person,
+      jobTitle: lang === 'en' ? 'Psychologist' : lang === 'it' ? 'Psicologa' : 'Psicóloga',
+      knowsLanguage: ['es', 'it', 'en'],
+      image: imageUrl,
+      sameAs: [site.instagram],
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+  },
+];
+---
+<Base lang={lang} title={t.meta.homeTitle} description={t.meta.homeDescription} alternates={routes.home} jsonLd={jsonLd}>
+  <Hero lang={lang} />
+  <Who lang={lang} />
+  <About lang={lang} />
+  <Services lang={lang} />
+  <Steps lang={lang} />
+  <Fees lang={lang} />
+  <Faq lang={lang} />
+  {posts.length > 0 && (
+    <section class="section" aria-labelledby="blog-title">
+      <div class="wrap">
+        <div class="blog-head">
+          <h2 id="blog-title">{t.blogTeaser.title}</h2>
+          <a class="link-quiet" href={href('blog', lang)}>{t.blogTeaser.all}</a>
+        </div>
+        <PostList lang={lang} posts={posts} headingLevel="h3" />
+      </div>
+    </section>
+  )}
+  <Contact lang={lang} />
+</Base>
+
+<style>
+  .blog-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+</style>
